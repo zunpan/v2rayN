@@ -17,6 +17,13 @@ public class SpeedtestService(Config config, Func<SpeedTestResult, Task> updateF
         });
     }
 
+    public async Task RunOnceAsync(ESpeedActionType actionType, List<ProfileItem> selecteds)
+    {
+        await RunAsync(actionType, selecteds);
+        await ProfileExManager.Instance.SaveTo();
+        await UpdateFunc("", ResUI.SpeedtestingCompleted);
+    }
+
     public void ExitLoop()
     {
         if (!_lstExitLoop.IsEmpty)

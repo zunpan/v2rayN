@@ -134,6 +134,10 @@ public static class ConfigHandler
         {
             config.SpeedTestItem.MixedConcurrencyCount = 5;
         }
+        if (config.SpeedTestItem.AutoMixedTestIntervalMinutes < 1)
+        {
+            config.SpeedTestItem.AutoMixedTestIntervalMinutes = 10;
+        }
 
         config.Mux4RayItem ??= new()
         {

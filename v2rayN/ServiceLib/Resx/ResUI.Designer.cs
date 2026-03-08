@@ -3565,6 +3565,33 @@ namespace ServiceLib.Resx {
         }
         
         /// <summary>
+        ///   查找类似 Backup before auto delete 的本地化字符串。
+        /// </summary>
+        public static string TbSettingsAutoMixedTestBackupEnabled {
+            get {
+                return ResourceManager.GetString("TbSettingsAutoMixedTestBackupEnabled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Schedule one-click multi-thread delay/speed test 的本地化字符串。
+        /// </summary>
+        public static string TbSettingsAutoMixedTestEnabled {
+            get {
+                return ResourceManager.GetString("TbSettingsAutoMixedTestEnabled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Schedule interval (minutes) 的本地化字符串。
+        /// </summary>
+        public static string TbSettingsAutoMixedTestIntervalMinutes {
+            get {
+                return ResourceManager.GetString("TbSettingsAutoMixedTestIntervalMinutes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Automatic update interval for Geo files (hours) 的本地化字符串。
         /// </summary>
         public static string TbSettingsAutoUpdateInterval {

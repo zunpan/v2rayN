@@ -102,6 +102,9 @@ public partial class OptionSettingWindow
             this.Bind(ViewModel, vm => vm.SpeedTestUrl, v => v.cmbSpeedTestUrl.Text).DisposeWith(disposables);
             this.Bind(ViewModel, vm => vm.SpeedPingTestUrl, v => v.cmbSpeedPingTestUrl.Text).DisposeWith(disposables);
             this.Bind(ViewModel, vm => vm.MixedConcurrencyCount, v => v.cmbMixedConcurrencyCount.Text).DisposeWith(disposables);
+            this.Bind(ViewModel, vm => vm.AutoMixedTestEnabled, v => v.togAutoMixedTestEnabled.IsChecked).DisposeWith(disposables);
+            this.Bind(ViewModel, vm => vm.AutoMixedTestIntervalMinutes, v => v.txtAutoMixedTestIntervalMinutes.Text).DisposeWith(disposables);
+            this.Bind(ViewModel, vm => vm.AutoSwitchBestNodeEnabled, v => v.togAutoSwitchBestNodeEnabled.IsChecked).DisposeWith(disposables);
             this.Bind(ViewModel, vm => vm.EnableHWA, v => v.togEnableHWA.IsChecked).DisposeWith(disposables);
             this.Bind(ViewModel, vm => vm.SubConvertUrl, v => v.cmbSubConvertUrl.Text).DisposeWith(disposables);
             this.Bind(ViewModel, vm => vm.MainGirdOrientation, v => v.cmbMainGirdOrientation.SelectedIndex).DisposeWith(disposables);

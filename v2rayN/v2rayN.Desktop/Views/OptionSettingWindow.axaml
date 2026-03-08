@@ -334,7 +334,7 @@
                     <Grid
                         Margin="{StaticResource Margin4}"
                         ColumnDefinitions="Auto,Auto,*"
-                        RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto">
+                        RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto">
 
                         <TextBlock
                             x:Name="tbAutoRun"
@@ -678,6 +678,42 @@
                             VerticalAlignment="Center"
                             Text="{x:Static resx:ResUI.TbSettingsChinaUserTip}"
                             TextWrapping="Wrap" />
+
+                        <TextBlock
+                            Grid.Row="26"
+                            Grid.Column="0"
+                            Margin="{StaticResource Margin4}"
+                            VerticalAlignment="Center"
+                            Text="{x:Static resx:ResUI.TbSettingsAutoMixedTestEnabled}" />
+                        <ToggleSwitch
+                            x:Name="togAutoMixedTestEnabled"
+                            Grid.Row="26"
+                            Grid.Column="1"
+                            Margin="{StaticResource Margin4}"
+                            HorizontalAlignment="Left" />
+                        <StackPanel
+                            Grid.Row="26"
+                            Grid.Column="2"
+                            Margin="{StaticResource Margin4}"
+                            Orientation="Horizontal">
+                            <TextBlock
+                                Margin="{StaticResource Margin4}"
+                                VerticalAlignment="Center"
+                                Text="{x:Static resx:ResUI.TbSettingsAutoMixedTestIntervalMinutes}" />
+                            <TextBox
+                                x:Name="txtAutoMixedTestIntervalMinutes"
+                                Width="80"
+                                Margin="{StaticResource Margin4}"
+                                HorizontalAlignment="Left" />
+                            <TextBlock
+                                Margin="{StaticResource Margin4}"
+                                VerticalAlignment="Center"
+                                Text="{x:Static resx:ResUI.TbSettingsAutoMixedTestBackupEnabled}" />
+                            <ToggleSwitch
+                                x:Name="togAutoSwitchBestNodeEnabled"
+                                Margin="{StaticResource Margin4}"
+                                HorizontalAlignment="Left" />
+                        </StackPanel>
 
                     </Grid>
                 </ScrollViewer>

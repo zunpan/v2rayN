@@ -960,6 +960,15 @@
   <data name="TbSettingsSpeedTestUrl" xml:space="preserve">
     <value>Speed Test URL</value>
   </data>
+  <data name="TbSettingsAutoMixedTestEnabled" xml:space="preserve">
+    <value>Schedule one-click multi-thread delay/speed test</value>
+  </data>
+  <data name="TbSettingsAutoMixedTestIntervalMinutes" xml:space="preserve">
+    <value>Schedule interval (minutes)</value>
+  </data>
+  <data name="TbSettingsAutoMixedTestBackupEnabled" xml:space="preserve">
+    <value>Auto switch to best node</value>
+  </data>
   <data name="menuMoveTo" xml:space="preserve">
     <value>Move up and down</value>
   </data>

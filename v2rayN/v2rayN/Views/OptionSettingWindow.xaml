@@ -65,6 +65,21 @@
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
@@ -545,6 +560,9 @@
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
@@ -937,6 +955,45 @@
                             Style="{StaticResource ToolbarTextBlock}"
                             Text="{x:Static resx:ResUI.TbSettingsChinaUserTip}"
                             TextWrapping="Wrap" />
+
+                        <TextBlock
+                            Grid.Row="26"
+                            Grid.Column="0"
+                            Margin="{StaticResource Margin8}"
+                            VerticalAlignment="Center"
+                            Style="{StaticResource ToolbarTextBlock}"
+                            Text="{x:Static resx:ResUI.TbSettingsAutoMixedTestEnabled}" />
+                        <ToggleButton
+                            x:Name="togAutoMixedTestEnabled"
+                            Grid.Row="26"
+                            Grid.Column="1"
+                            Margin="{StaticResource Margin8}"
+                            HorizontalAlignment="Left" />
+                        <StackPanel
+                            Grid.Row="26"
+                            Grid.Column="2"
+                            Margin="{StaticResource Margin4}"
+                            Orientation="Horizontal">
+                            <TextBlock
+                                Margin="{StaticResource MarginRight8}"
+                                VerticalAlignment="Center"
+                                Style="{StaticResource ToolbarTextBlock}"
+                                Text="{x:Static resx:ResUI.TbSettingsAutoMixedTestIntervalMinutes}" />
+                            <TextBox
+                                x:Name="txtAutoMixedTestIntervalMinutes"
+                                Width="80"
+                                HorizontalAlignment="Left"
+                                Style="{StaticResource DefTextBox}" />
+                            <TextBlock
+                                Margin="{StaticResource MarginLeftRight8}"
+                                VerticalAlignment="Center"
+                                Style="{StaticResource ToolbarTextBlock}"
+                                Text="{x:Static resx:ResUI.TbSettingsAutoMixedTestBackupEnabled}" />
+                            <ToggleButton
+                                x:Name="togAutoSwitchBestNodeEnabled"
+                                HorizontalAlignment="Left" />
+                        </StackPanel>
+
                     </Grid>
                 </ScrollViewer>
             </TabItem>

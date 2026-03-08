@@ -155,6 +155,10 @@ public class SpeedTestItem
     public string SpeedPingTestUrl { get; set; }
     public int MixedConcurrencyCount { get; set; }
     public string IPAPIUrl { get; set; }
+    public bool AutoMixedTestEnabled { get; set; }
+    public int AutoMixedTestIntervalMinutes { get; set; } = 10;
+    public bool AutoSwitchBestNodeEnabled { get; set; }
+    public long AutoMixedTestLastRunTime { get; set; }
 }
 
 [Serializable]

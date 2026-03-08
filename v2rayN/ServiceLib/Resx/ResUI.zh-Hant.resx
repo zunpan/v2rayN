@@ -960,6 +960,15 @@
   <data name="TbSettingsSpeedTestUrl" xml:space="preserve">
     <value>測速檔案位址</value>
   </data>
+  <data name="TbSettingsAutoMixedTestEnabled" xml:space="preserve">
+    <value>定時執行一鍵多執行緒測試延遲和速度</value>
+  </data>
+  <data name="TbSettingsAutoMixedTestIntervalMinutes" xml:space="preserve">
+    <value>定時間隔（分鐘）</value>
+  </data>
+  <data name="TbSettingsAutoMixedTestBackupEnabled" xml:space="preserve">
+    <value>自動切換最優節點</value>
+  </data>
   <data name="menuMoveTo" xml:space="preserve">
     <value>移至上下</value>
   </data>

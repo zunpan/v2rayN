@@ -6,11 +6,14 @@ public class TaskManager
     public static TaskManager Instance => _instance.Value;
     private Config _config;
     private Func<bool, string, Task>? _updateFunc;
+    private readonly SemaphoreSlim _autoMixedTestTaskLock = new(1, 1);
+    private AutoMixedTestCleanupService? _autoMixedTestCleanupService;
 
     public void RegUpdateTask(Config config, Func<bool, string, Task> updateFunc)
     {
         _config = config;
         _updateFunc = updateFunc;
+        _autoMixedTestCleanupService = new AutoMixedTestCleanupService(_config);
 
         Task.Run(ScheduledTasks);
     }
@@ -33,6 +36,15 @@ public class TaskManager
             catch (Exception ex)
             {
                 Logging.SaveLog("ScheduledTasks - UpdateTaskRunSubscription", ex);
+            }
+
+            try
+            {
+                await UpdateTaskRunAutoMixedTest();
+            }
+            catch (Exception ex)
+            {
+                Logging.SaveLog("ScheduledTasks - UpdateTaskRunAutoMixedTest", ex);
             }
 
             //Execute once 20 minute
@@ -115,6 +127,67 @@ public class TaskManager
             {
                 await _updateFunc?.Invoke(false, msg);
             }).UpdateGeoFileAll();
+        }
+    }
+
+    private async Task UpdateTaskRunAutoMixedTest()
+    {
+        if (_autoMixedTestCleanupService == null || !_config.SpeedTestItem.AutoMixedTestEnabled)
+        {
+            return;
+        }
+
+        if (!await _autoMixedTestTaskLock.WaitAsync(0))
+        {
+            return;
+        }
+
+        try
+        {
+            var nowUnix = DateTimeOffset.Now.ToUnixTimeSeconds();
+            var intervalMinutes = Math.Max(1, _config.SpeedTestItem.AutoMixedTestIntervalMinutes);
+            if (_config.SpeedTestItem.AutoMixedTestLastRunTime > 0
+                && nowUnix - _config.SpeedTestItem.AutoMixedTestLastRunTime < intervalMinutes * 60)
+            {
+                return;
+            }
+
+            _config.SpeedTestItem.AutoMixedTestLastRunTime = nowUnix;
+            var result = await _autoMixedTestCleanupService.RunOnceAsync(_config.SubIndexId);
+            await ConfigHandler.SaveConfig(_config);
+
+            if (result.Skipped)
+            {
+                await _updateFunc?.Invoke(false, $"Auto mixed test skipped: {result.SkipReason}");
+                return;
+            }
+
+            if (result.DeletedCount > 0)
+            {
+                var msg = $"Auto mixed test deleted {result.DeletedCount} nodes, sorted {result.SortedCount}";
+                if (result.SwitchedToIndexId.IsNotEmpty())
+                {
+                    msg += ", switched to top node";
+                }
+                await _updateFunc?.Invoke(true, msg);
+            }
+            else if (result.Errors.Count > 0)
+            {
+                await _updateFunc?.Invoke(false, $"Auto mixed test finished with {result.Errors.Count} errors");
+            }
+            else
+            {
+                var msg = $"Auto mixed test finished. scanned={result.ScannedCount}, sorted={result.SortedCount}";
+                if (result.SwitchedToIndexId.IsNotEmpty())
+                {
+                    msg += ", switched to top node";
+                }
+                await _updateFunc?.Invoke(true, msg);
+            }
+        }
+        finally
+        {
+            _autoMixedTestTaskLock.Release();
         }
     }
 }

@@ -241,6 +241,11 @@ public class ProfilesViewModel : MyReactiveObject
             .ObserveOn(RxApp.MainThreadScheduler)
             .Subscribe(async result => await UpdateStatistics(result));
 
+        AppEvents.SpeedTestResultUpdated
+            .AsObservable()
+            .ObserveOn(RxApp.MainThreadScheduler)
+            .Subscribe(async result => await SetSpeedTestResult(result));
+
         AppEvents.SetDefaultServerRequested
             .AsObservable()
             .ObserveOn(RxApp.MainThreadScheduler)
